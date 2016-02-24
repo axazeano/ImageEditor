@@ -13,7 +13,11 @@ namespace ImageEditor
         private Bitmap prevImage;
         private Bitmap newImage;
 
-        abstract public Bitmap apply(Bitmap image);
+        public Effect(Bitmap image)
+        {
+            this.prevImage = image;
+        }
+        abstract public Bitmap apply();
         abstract public Bitmap reverse();
 
     }
