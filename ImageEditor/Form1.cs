@@ -15,6 +15,7 @@ namespace ImageEditor
 
         private Bitmap originalBitmap;
         private Bitmap modifiedBitmap;
+        private History history = new History(10);
 
         public Form1()
         {
@@ -56,7 +57,9 @@ namespace ImageEditor
             rotateDialogBox.ShowDialog();
             if (rotateDialogBox.DialogResult == DialogResult.OK)
             {
-                modifiedBitmap = Effect.rotate(originalBitmap, int.Parse(rotateDialogBox.angleUpDown.Text));
+                int angle = int.Parse(rotateDialogBox.angleUpDown.Text);
+                //modifiedBitmap = Effect.rotate(originalBitmap, int.Parse(rotateDialogBox.angleUpDown.Text));
+                history.addHistoryItem(modifiedBitmap, String.Format("Rotate on {0}. ULCorner: {1}, BUCorner: {2}", angle, 0, 0));
                 modifiedImage.Image = modifiedBitmap;
                 rotateDialogBox.Dispose();
             }
