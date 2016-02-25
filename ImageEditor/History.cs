@@ -28,13 +28,13 @@ namespace ImageEditor
         public History(int size)
         {
             historySize = size;
-            historyStack = new List<HistoryItem>(size);
-            head = -1;
+            historyStack = new List<HistoryItem>(size + 1);
+            head = 0;
         }
 
         public bool isEmpty()
         {
-            if (head == -1)
+            if (head == 0)
             {
                 return true;
             } else
@@ -45,7 +45,7 @@ namespace ImageEditor
 
         public bool isFull()
         {
-            if (head == (historySize - 1))
+            if (head == (historySize))
             {
                 return true;
             }
@@ -59,7 +59,7 @@ namespace ImageEditor
         {
             for (int i = shiftSize; i < historyStack.Capacity; i++)
             {
-                historyStack.RemoveAt(historySize - 1);
+                historyStack.RemoveAt(historySize);
             }
         }
 
@@ -71,7 +71,7 @@ namespace ImageEditor
                 historyShift(1);
             } else
             {
-                head++;
+                head += 1;
             }
             historyStack.Add(newHistoryItem);
 
@@ -81,11 +81,11 @@ namespace ImageEditor
         {
             if (!isEmpty())
             {
-                head--;
+                head -= 1;
                 return historyStack[head].imageState;
             } else
             {
-                return null;
+                return historyStack.First().imageState;
             }
         }
 
@@ -97,10 +97,10 @@ namespace ImageEditor
             }
             if (!isEmpty())
             {
-                return null;
+                return historyStack.First().imageState;
             } else
             {
-                head++;
+                head += 1;
                 return historyStack[head].imageState;
             }
         }
