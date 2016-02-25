@@ -41,13 +41,14 @@ namespace ImageEditor
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                System.IO.StreamReader sr = new
-                   System.IO.StreamReader(openFileDialog1.FileName);
                 originalBitmap = new Bitmap(Image.FromFile(openFileDialog1.FileName));
                 modifiedBitmap = new Bitmap(Image.FromFile(openFileDialog1.FileName));
                 originalImage.Image = originalBitmap;
                 modifiedImage.Image = originalBitmap;
-                sr.Close();
+                history.add(modifiedBitmap, string.Format("Image opened"));
+                // Enable menu items
+                effectsToolStripMenuItem.Enabled = true;
+                editToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -58,11 +59,17 @@ namespace ImageEditor
             if (rotateDialogBox.DialogResult == DialogResult.OK)
             {
                 int angle = int.Parse(rotateDialogBox.angleUpDown.Text);
-                //modifiedBitmap = Effect.rotate(originalBitmap, int.Parse(rotateDialogBox.angleUpDown.Text));
-                history.addHistoryItem(modifiedBitmap, String.Format("Rotate on {0}. ULCorner: {1}, BUCorner: {2}", angle, 0, 0));
+                history.add(modifiedBitmap, String.Format("Rotate on {0}. ULCorner: {1}, BUCorner: {2}", angle, 0, 0));
+                modifiedBitmap = Effect.rotate(originalBitmap, int.Parse(rotateDialogBox.angleUpDown.Text));
                 modifiedImage.Image = modifiedBitmap;
                 rotateDialogBox.Dispose();
             }
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap modifiedBitmap = history.undo();
+            modifiedImage.Image = modifiedBitmap;
         }
     }
 }
