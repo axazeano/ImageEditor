@@ -55,9 +55,9 @@ namespace ImageEditor
             }
         }
 
-        public void historyShift()
+        public void historyShift(int shiftSize)
         {
-            for (int i = 1; i < historyStack.Capacity; i++)
+            for (int i = shiftSize; i < historyStack.Capacity; i++)
             {
                 historyStack.RemoveAt(historySize - 1);
             }
@@ -68,10 +68,41 @@ namespace ImageEditor
             HistoryItem newHistoryItem = new HistoryItem(image, description);
             if (isFull())
             {
-                historyShift();
+                historyShift(1);
+            } else
+            {
+                head++;
             }
             historyStack.Add(newHistoryItem);
+
         }
 
+        public Bitmap undo()
+        {
+            if (!isEmpty())
+            {
+                head--;
+                return historyStack[head].imageState;
+            } else
+            {
+                return null;
+            }
+        }
+
+        public Bitmap redo()
+        {
+            if (!isFull())
+            {
+                return historyStack[head].imageState;
+            }
+            if (!isEmpty())
+            {
+                return null;
+            } else
+            {
+                head++;
+                return historyStack[head].imageState;
+            }
+        }
     }
 }
