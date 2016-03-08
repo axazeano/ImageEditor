@@ -70,6 +70,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LockBitmap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RotateDialogBox.cs">
@@ -78,6 +79,7 @@
     <Compile Include="RotateDialogBox.Designer.cs">
       <DependentUpon>RotateDialogBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Selection.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

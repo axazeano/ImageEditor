@@ -49,12 +49,16 @@
             // trackBar1
             // 
             this.trackBar1.Cursor = System.Windows.Forms.Cursors.SizeWE;
+            this.trackBar1.LargeChange = 10;
             this.trackBar1.Location = new System.Drawing.Point(38, 46);
+            this.trackBar1.Maximum = 720;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(363, 45);
             this.trackBar1.TabIndex = 1;
-            this.trackBar1.TickFrequency = 5;
+            this.trackBar1.TickFrequency = 720;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar1.Value = 360;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label1
             // 
@@ -70,9 +74,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 13);
+            this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "0°";
+            this.label2.Text = "-360°";
             // 
             // label3
             // 
@@ -85,7 +89,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(283, 82);
+            this.okButton.Location = new System.Drawing.Point(282, 94);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
@@ -95,18 +99,19 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(364, 82);
+            this.cancelButton.Location = new System.Drawing.Point(363, 94);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 6;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // RotateDialogBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 112);
+            this.ClientSize = new System.Drawing.Size(446, 121);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.label3);

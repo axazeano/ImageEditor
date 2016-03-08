@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace ImageEditor
 {
-    public partial class RotateDialogBox : Form
+    public partial class WindDialogBox : Form
     {
-        public RotateDialogBox()
+        public WindDialogBox()
         {
             InitializeComponent();
-            okButton.DialogResult = DialogResult.OK;
-            cancelButton.DialogResult = DialogResult.Cancel;
-        }
-
-        private void okButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -91,7 +91,7 @@ namespace ImageEditor
 
         public Bitmap redo()
         {
-            if (!isFull())
+            if (!isFull() || head == historyStack.Count-1)
             {
                 return historyStack[head].imageState;
             }

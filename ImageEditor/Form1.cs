@@ -45,6 +45,11 @@ namespace ImageEditor
                 modifiedBitmap = new Bitmap(Image.FromFile(openFileDialog1.FileName));
                 originalImage.Image = originalBitmap;
                 modifiedImage.Image = originalBitmap;
+
+                Pen pen = new Pen(Color.Red);
+                Graphics g = originalImage.CreateGraphics();
+                g.DrawRectangle(pen, 10, 10, 30, 30);
+
                 history.add(modifiedBitmap, string.Format("Image opened"));
                 // Enable menu items
                 effectsToolStripMenuItem.Enabled = true;
@@ -58,7 +63,7 @@ namespace ImageEditor
             rotateDialogBox.ShowDialog();
             if (rotateDialogBox.DialogResult == DialogResult.OK)
             {
-                int angle = int.Parse(rotateDialogBox.angleUpDown.Text);
+                int angle = int.Parse(rotateDialogBox.angleUpDown.Text) - 360;
                 history.add(modifiedBitmap, String.Format("Rotate on {0}. ULCorner: {1}, BUCorner: {2}", angle, 0, 0));
                 modifiedBitmap = Effect.rotate(originalBitmap, int.Parse(rotateDialogBox.angleUpDown.Text));
                 modifiedImage.Image = modifiedBitmap;
@@ -69,6 +74,17 @@ namespace ImageEditor
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap modifiedBitmap = history.undo();
+            modifiedImage.Image = modifiedBitmap;
+        }
+
+        private void startSelection(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void windToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Effect.wind(modifiedBitmap, 100, Effect.Direction.Left);
             modifiedImage.Image = modifiedBitmap;
         }
     }
