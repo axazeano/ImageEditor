@@ -1,108 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ImageEditor.Effects;
 
 namespace ImageEditor
 {
+
+    struct HistoryElement
+    {
+        public HistoryElement(BaseEffect effect)
+        {
+            image = effect.resultImage;
+            name = effect.name;
+            time = DateTime.Now.ToString("HH:mm:ss tt");
+        }
+
+        public HistoryElement(Bitmap image, string name)
+        {
+            this.image = image;
+            this.name = name;
+            time = DateTime.Now.ToString("HH:mm:ss tt");
+        }
+
+        public Bitmap image { get; }
+        public String name { get; }
+        public string time { get; }
+    }
+
     class History
     {
-        struct HistoryItem
-        {
-            public Bitmap imageState;
-            public string description;
+        public List<HistoryElement> history { get; }
+        private int _currentElement;
 
-            public HistoryItem(Bitmap image, string description)
+        public delegate void Complete(Bitmap image);
+
+        private static History _instance;
+
+        private History()
+        {
+            this._currentElement = -1;
+            history = new List<HistoryElement>();
+        }
+
+        /// <summary>
+        /// Singleton of history
+        /// </summary>
+        public static History Instance => _instance ?? (_instance = new History());
+
+
+
+        public void AddElement(BaseEffect effect)
+        {
+            history.Add(new HistoryElement(effect));
+            ++_currentElement;
+        }
+
+        public void AddElement(Bitmap image, string name)
+        {
+            history.Add(new HistoryElement(image, name));
+            ++_currentElement;
+        }
+
+        public void RemoveElement(int index)
+        {
+            history.RemoveAt(index);
+        }
+
+        public Bitmap GetCurrentImage()
+        {
+            return history[_currentElement].image;
+        }
+
+
+        public void Undo(Complete complete)
+        {
+            if (_currentElement > 0)
             {
-                imageState = image;
-                this.description = description;
+                _currentElement -= 1;
+                complete(GetCurrentImage());
             }
         }
 
-        private List<HistoryItem> historyStack;
-        private int historySize;
-        private int head;
-
-        public History(int size)
+        public void Redo(Complete complete)
         {
-            historySize = size;
-            historyStack = new List<HistoryItem>(size + 1);
-            head = 0;
-        }
-
-        public bool isEmpty()
-        {
-            if (head == 0)
+            if (_currentElement <= history.Count)
             {
-                return true;
-            } else
-            {
-                return false;
+                ++_currentElement;
+                complete(GetCurrentImage());
             }
         }
 
-        public bool isFull()
+        public void Clear()
         {
-            if (head == (historySize))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            history.Clear();
         }
 
-        public void historyShift(int shiftSize)
-        {
-            for (int i = shiftSize; i < historyStack.Capacity; i++)
-            {
-                historyStack.RemoveAt(historySize);
-            }
-        }
-
-        public void add(Bitmap image, string description)
-        {
-            HistoryItem newHistoryItem = new HistoryItem(image, description);
-            if (isFull())
-            {
-                historyShift(1);
-            } else
-            {
-                head += 1;
-            }
-            historyStack.Add(newHistoryItem);
-
-        }
-
-        public Bitmap undo()
-        {
-            if (!isEmpty())
-            {
-                head -= 1;
-                return historyStack[head].imageState;
-            } else
-            {
-                return historyStack.First().imageState;
-            }
-        }
-
-        public Bitmap redo()
-        {
-            if (!isFull() || head == historyStack.Count-1)
-            {
-                return historyStack[head].imageState;
-            }
-            if (!isEmpty())
-            {
-                return historyStack.First().imageState;
-            } else
-            {
-                head += 1;
-                return historyStack[head].imageState;
-            }
-        }
     }
 }

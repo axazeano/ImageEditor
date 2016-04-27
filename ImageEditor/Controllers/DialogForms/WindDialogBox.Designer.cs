@@ -57,6 +57,7 @@
             this.okButton.TabIndex = 12;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // label3
             // 
@@ -96,6 +97,7 @@
             this.strengtTrackBar.TabIndex = 8;
             this.strengtTrackBar.TickFrequency = 100;
             this.strengtTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.strengtTrackBar.Scroll += new System.EventHandler(this.strengtTrackBar_Scroll);
             // 
             // strengtUpDown
             // 
@@ -116,6 +118,7 @@
             // 
             // directionComboBox
             // 
+            this.directionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.directionComboBox.FormattingEnabled = true;
             this.directionComboBox.Items.AddRange(new object[] {
             "Right",
@@ -124,7 +127,7 @@
             "Down"});
             this.directionComboBox.Location = new System.Drawing.Point(94, 96);
             this.directionComboBox.Name = "directionComboBox";
-            this.directionComboBox.Size = new System.Drawing.Size(121, 21);
+            this.directionComboBox.Size = new System.Drawing.Size(94, 21);
             this.directionComboBox.TabIndex = 15;
             // 
             // WindDialogBox
@@ -141,6 +144,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.strengtTrackBar);
             this.Controls.Add(this.strengtUpDown);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WindDialogBox";
             this.Text = "Effects: Wind";
             ((System.ComponentModel.ISupportInitialize)(this.strengtTrackBar)).EndInit();

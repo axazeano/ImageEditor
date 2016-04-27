@@ -41,6 +41,14 @@
             this.rotateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wavesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.testFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.threadholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomJitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statisticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.originalImage = new System.Windows.Forms.PictureBox();
             this.modifiedImage = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,7 +65,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
-            this.effectsToolStripMenuItem});
+            this.effectsToolStripMenuItem,
+            this.statisticToolStripMenuItem,
+            this.historyToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(853, 24);
@@ -107,20 +117,21 @@
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.redoToolStripMenuItem.Text = "Redo";
+            this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
             // selectionToolStripMenuItem
             // 
             this.selectionToolStripMenuItem.Name = "selectionToolStripMenuItem";
-            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.selectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.selectionToolStripMenuItem.Text = "Selection";
             this.selectionToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -129,7 +140,11 @@
             this.effectsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rotateToolStripMenuItem,
             this.wavesToolStripMenuItem,
-            this.windToolStripMenuItem});
+            this.windToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.testFilterToolStripMenuItem,
+            this.threadholdToolStripMenuItem,
+            this.randomJitterToolStripMenuItem});
             this.effectsToolStripMenuItem.Enabled = false;
             this.effectsToolStripMenuItem.Name = "effectsToolStripMenuItem";
             this.effectsToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
@@ -138,22 +153,78 @@
             // rotateToolStripMenuItem
             // 
             this.rotateToolStripMenuItem.Name = "rotateToolStripMenuItem";
-            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.rotateToolStripMenuItem.Text = "Rotate";
             this.rotateToolStripMenuItem.Click += new System.EventHandler(this.rotateToolStripMenuItem_Click);
             // 
             // wavesToolStripMenuItem
             // 
             this.wavesToolStripMenuItem.Name = "wavesToolStripMenuItem";
-            this.wavesToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.wavesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.wavesToolStripMenuItem.Text = "Waves";
             // 
             // windToolStripMenuItem
             // 
             this.windToolStripMenuItem.Name = "windToolStripMenuItem";
-            this.windToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.windToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.windToolStripMenuItem.Text = "Wind";
             this.windToolStripMenuItem.Click += new System.EventHandler(this.windToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(144, 6);
+            // 
+            // testFilterToolStripMenuItem
+            // 
+            this.testFilterToolStripMenuItem.Name = "testFilterToolStripMenuItem";
+            this.testFilterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testFilterToolStripMenuItem.Text = "Gray world";
+            this.testFilterToolStripMenuItem.Click += new System.EventHandler(this.grayWorldToolStripMenuItem_Click);
+            // 
+            // threadholdToolStripMenuItem
+            // 
+            this.threadholdToolStripMenuItem.Name = "threadholdToolStripMenuItem";
+            this.threadholdToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.threadholdToolStripMenuItem.Text = "Threadhold";
+            this.threadholdToolStripMenuItem.Click += new System.EventHandler(this.threadholdToolStripMenuItem_Click);
+            // 
+            // randomJitterToolStripMenuItem
+            // 
+            this.randomJitterToolStripMenuItem.Name = "randomJitterToolStripMenuItem";
+            this.randomJitterToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.randomJitterToolStripMenuItem.Text = "Random Jitter";
+            this.randomJitterToolStripMenuItem.Click += new System.EventHandler(this.randomJitterToolStripMenuItem_Click);
+            // 
+            // statisticToolStripMenuItem
+            // 
+            this.statisticToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.histogramToolStripMenuItem});
+            this.statisticToolStripMenuItem.Name = "statisticToolStripMenuItem";
+            this.statisticToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.statisticToolStripMenuItem.Text = "Statistic";
+            // 
+            // histogramToolStripMenuItem
+            // 
+            this.histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
+            this.histogramToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.histogramToolStripMenuItem.Text = "Histogram";
+            this.histogramToolStripMenuItem.Click += new System.EventHandler(this.histogramToolStripMenuItem_Click);
+            // 
+            // historyToolStripMenuItem
+            // 
+            this.historyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewHistoryToolStripMenuItem});
+            this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.historyToolStripMenuItem.Text = "History";
+            // 
+            // viewHistoryToolStripMenuItem
+            // 
+            this.viewHistoryToolStripMenuItem.Name = "viewHistoryToolStripMenuItem";
+            this.viewHistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewHistoryToolStripMenuItem.Text = "View history";
+            this.viewHistoryToolStripMenuItem.Click += new System.EventHandler(this.viewHistoryToolStripMenuItem_Click);
             // 
             // originalImage
             // 
@@ -164,7 +235,10 @@
             this.originalImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.originalImage.TabIndex = 1;
             this.originalImage.TabStop = false;
+            this.originalImage.Paint += new System.Windows.Forms.PaintEventHandler(this.originalImage_Paint);
             this.originalImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.startSelection);
+            this.originalImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.originalImage_MouseMove);
+            this.originalImage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.originalImage_MouseUp);
             // 
             // modifiedImage
             // 
@@ -241,6 +315,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem windToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem testFilterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem threadholdToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem statisticToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem histogramToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem randomJitterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewHistoryToolStripMenuItem;
     }
 }
 

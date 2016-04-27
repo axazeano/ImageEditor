@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImageEditor
+namespace ImageEditor.DialogForms
 {
-    public partial class WindDialogBox : Form
+    public partial class Histogram : Form
     {
-        public WindDialogBox()
+        public Histogram()
         {
             InitializeComponent();
         }
